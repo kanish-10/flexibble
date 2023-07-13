@@ -8,8 +8,10 @@ import FormField from "./FormField";
 import CustomMenu from "./CustomMenu";
 import Button from "./Button";
 import ProjectCard from "./ProjectCard";
+import RelatedProjects from "./RelatedProjects";
 
 export {
+  RelatedProjects,
   ProjectCard,
   Navbar,
   Footer,
