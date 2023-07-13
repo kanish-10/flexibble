@@ -5,6 +5,8 @@ import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import { Button, CustomMenu, FormField } from ".";
 import { categoryFilters } from "@/constants";
+import { createNewProject, fetchToken } from "@/lib/actions";
+import { useRouter } from "next/navigation";
 
 type Props = {
   type: string;
@@ -12,14 +14,25 @@ type Props = {
 };
 
 const ProjectForm = ({ type, session }: Props) => {
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const router = useRouter();
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const { token } = await fetchToken();
+
     try {
       if (type === "create") {
         // create new project
+        await createNewProject(form, session?.user?.id, token);
+        router.push("/");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
