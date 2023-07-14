@@ -10,8 +10,10 @@ import Button from "./Button";
 import ProjectCard from "./ProjectCard";
 import RelatedProjects from "./RelatedProjects";
 import ProjectActions from "./ProjectActions";
+import Categories from "./Categories";
 
 export {
+  Categories,
   ProjectActions,
   RelatedProjects,
   ProjectCard,
