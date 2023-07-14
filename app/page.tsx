@@ -1,5 +1,5 @@
 import { ProjectInterface } from "@/common.types";
-import { Categories, ProjectCard } from "@/components";
+import { Categories, LoadMore, ProjectCard } from "@/components";
 import { fetchAllProjects } from "@/lib/actions";
 
 type ProjectSearch = {
@@ -16,12 +16,21 @@ type ProjectSearch = {
   };
 };
 
-const Home = async ({
-  searchParams: { category },
-}: {
-  searchParams: { category: string };
-}) => {
-  const data = (await fetchAllProjects(category)) as ProjectSearch;
+type SearchParams = {
+  category?: string;
+  endCursor?: string;
+};
+
+type Props = {
+  searchParams: SearchParams;
+};
+
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
+export const revalidate = 0;
+
+const Home = async ({ searchParams: { category, endCursor } }: Props) => {
+  const data = (await fetchAllProjects(category, endCursor)) as ProjectSearch;
   const projectsToDisplay = data?.projectSearch?.edges || [];
   if (projectsToDisplay.length === 0) {
     return (
@@ -31,6 +40,7 @@ const Home = async ({
       </section>
     );
   }
+  const pagination = data?.projectSearch?.pageInfo;
 
   return (
     <section className="flex-start flex-col paddings mb-16">
@@ -48,7 +58,12 @@ const Home = async ({
           />
         ))}
       </section>
-      <h1>LoadMore</h1>
+      <LoadMore
+        startCursor={pagination.startCursor}
+        endCursor={pagination.endCursor}
+        hasPreviousPage={pagination.hasPreviousPage}
+        hasNextPage={pagination.hasNextPage}
+      />
     </section>
   );
 };
