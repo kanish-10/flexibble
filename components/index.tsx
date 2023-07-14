@@ -9,8 +9,10 @@ import CustomMenu from "./CustomMenu";
 import Button from "./Button";
 import ProjectCard from "./ProjectCard";
 import RelatedProjects from "./RelatedProjects";
+import ProjectActions from "./ProjectActions";
 
 export {
+  ProjectActions,
   RelatedProjects,
   ProjectCard,
   Navbar,
