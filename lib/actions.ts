@@ -3,6 +3,7 @@ import {
   createProjectMutation,
   createUserMutation,
   deleteProjectMutation,
+  getAllProjects,
   getProjectByIdQuery,
   getProjectsOfUserQuery,
   getUserQuery,
@@ -106,15 +107,14 @@ export const fetchAllProjects = (
       category,
       endCursor,
     };
+    return makeGraphQLRequest(projectsQuery, variables);
   } else {
     variables = {
       category: "all",
       endCursor,
     };
+    return makeGraphQLRequest(getAllProjects, variables);
   }
-
-  console.log(variables);
-  return makeGraphQLRequest(projectsQuery, variables);
 };
 
 export const getProjectDetails = (id: string) => {
