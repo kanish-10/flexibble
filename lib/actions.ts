@@ -107,7 +107,10 @@ export const fetchAllProjects = (
       endCursor,
     };
   } else {
-    variables = {};
+    variables = {
+      category: "all",
+      endCursor,
+    };
   }
 
   console.log(variables);
