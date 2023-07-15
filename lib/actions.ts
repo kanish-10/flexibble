@@ -107,7 +107,7 @@ export const fetchAllProjects = (
     };
   } else {
     variables = {
-      category: "all",
+      category: "*",
       endCursor,
     };
   }
