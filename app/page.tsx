@@ -34,7 +34,7 @@ const Home = async ({ searchParams: { category, endCursor } }: Props) => {
 
   const data = category
     ? ((await fetchAllProjects(category, endCursor)) as ProjectSearch)
-    : ((await fetchAllProjects(all as string, endCursor)) as ProjectSearch);
+    : ((await fetchAllProjects(all, endCursor)) as ProjectSearch);
 
   console.log(data);
 
