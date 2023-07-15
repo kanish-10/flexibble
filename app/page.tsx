@@ -35,7 +35,8 @@ const Home = async ({ searchParams: { category, endCursor } }: Props) => {
     endCursor
   )) as ProjectSearch;
 
-  const projectsToDisplay = data?.projectSearch?.edges || [];
+  const projectsToDisplay = data?.projectSearch?.edges;
+  console.log(projectsToDisplay);
 
   if (projectsToDisplay.length === 0) {
     return (
