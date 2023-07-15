@@ -104,6 +104,8 @@ export const fetchAllProjects = (
     endCursor,
   };
 
+  console.log(variables);
+
   return makeGraphQLRequest(projectsQuery, variables);
 };
 
