@@ -31,11 +31,11 @@ export const revalidate = 0;
 
 const Home = async ({ searchParams: { category, endCursor } }: Props) => {
   const data = (await fetchAllProjects(
-    (category = "*"),
+    (category = category || "*"),
     endCursor
   )) as ProjectSearch;
 
-  const projectsToDisplay = data?.projectSearch?.edges;
+  const projectsToDisplay = data?.projectSearch?.edges || [];
   console.log(projectsToDisplay);
 
   if (projectsToDisplay.length === 0) {
