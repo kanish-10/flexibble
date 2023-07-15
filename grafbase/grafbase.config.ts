@@ -27,6 +27,7 @@ const Project = g
     liveSiteUrl: g.url(),
     githubUrl: g.url(),
     category: g.string().search(),
+    //@ts-ignore
     createdBy: g.relation(() => User),
   })
   .auth((rules) => {
@@ -35,7 +36,7 @@ const Project = g
 
 const jwt = auth.JWT({
   issuer: "grafbase",
-  secret: process.env.NEXTAUTH_URL!,
+  secret: process.env.NEXTAUTH_SECRET!,
 });
 
 export default config({
