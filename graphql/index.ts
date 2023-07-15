@@ -58,10 +58,7 @@ export const projectsQuery = `
   query getProjects($category: String, $endCursor: String) {
   projectSearch(first: 8, after: $endCursor, filter: {
     category: {
-      or: [
         { eq: $category },
-        { eq: "all" }
-      ]
     }
   }) {
     pageInfo {
