@@ -59,7 +59,6 @@ export const projectsQuery = `
   projectSearch(first: 8, after: $endCursor, filter: {
     category: {
       name: $category
-      operator: "eq"
     }
   }) {
     pageInfo {
