@@ -94,14 +94,23 @@ export const createNewProject = async (
 };
 
 export const fetchAllProjects = (
-  category?: string | undefined | null,
-  endCursor?: string | undefined | null
+  category?: string | null,
+  endCursor?: string | null
 ) => {
   client.setHeader("x-api-key", apiKey);
-  const variables = {
-    category: category ? category : "all",
-    endCursor,
-  };
+
+  let variables = {};
+  if (category) {
+    variables = {
+      category,
+      endCursor,
+    };
+  } else {
+    variables = {
+      category: "all",
+      endCursor,
+    };
+  }
   console.log(variables);
   return makeGraphQLRequest(projectsQuery, variables);
 };
