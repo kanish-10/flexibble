@@ -140,37 +140,3 @@ export const getProjectsOfUserQuery = `
     }
   }
 `;
-
-export const getAllProjects = `
-query getProjects($endCursor: String) {
-  projectSearch(first: 8, after: $endCursor, filter: {
-    category: {
-        { eq: "all" }
-    }
-  }) {
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    edges {
-      node {
-        title
-        githubUrl
-        description
-        liveSiteUrl
-        id
-        image
-        category
-        createdBy {
-          id
-          email
-          name
-          avatarUrl
-        }
-      }
-    }
-  }
-}
-`;
