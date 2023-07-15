@@ -110,7 +110,6 @@ export const fetchAllProjects = (
     return makeGraphQLRequest(projectsQuery, variables);
   } else {
     variables = {
-      category: "all",
       endCursor,
     };
     return makeGraphQLRequest(getAllProjects, variables);

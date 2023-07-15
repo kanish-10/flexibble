@@ -142,13 +142,10 @@ export const getProjectsOfUserQuery = `
 `;
 
 export const getAllProjects = `
-query getProjects($category: String, $endCursor: String) {
+query getProjects($endCursor: String) {
   projectSearch(first: 8, after: $endCursor, filter: {
     category: {
-      or: [
-        { eq: $category },
         { eq: "all" }
-      ]
     }
   }) {
     pageInfo {
