@@ -4,7 +4,7 @@ import { useCallback, useRef, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-const Modal = ({ children }: { children: ReactNode }) => {
+export default function Modal({ children }: { children: ReactNode }) {
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -14,7 +14,7 @@ const Modal = ({ children }: { children: ReactNode }) => {
   }, [router]);
 
   const handleClick = useCallback(
-    (e: React.MouseEvent) => {
+    (e: React.MouseEvent<HTMLDivElement>) => {
       if (e.target === overlay.current && onDismiss) {
         onDismiss();
       }
@@ -23,19 +23,18 @@ const Modal = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <div ref={overlay} className="modal" onClick={handleClick}>
+    <div ref={overlay} className="modal" onClick={(e) => handleClick(e)}>
       <button
         type="button"
         onClick={onDismiss}
         className="absolute top-4 right-8"
       >
-        <Image src={"/close.svg"} width={17} height={17} alt="close" />
+        <Image src="/close.svg" width={17} height={17} alt="close" />
       </button>
+
       <div ref={wrapper} className="modal_wrapper">
         {children}
       </div>
     </div>
   );
-};
-
-export default Modal;
+}

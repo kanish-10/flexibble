@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import { categoryFilters } from "@/constants";
 
 const Categories = () => {
@@ -10,8 +11,8 @@ const Categories = () => {
 
   const category = searchParams.get("category");
 
-  const handleTags = (tag: string) => {
-    router.push(`${pathName}?category=${tag}`);
+  const handleTags = (item: string) => {
+    router.push(`${pathName}?category=${item}`);
   };
 
   return (

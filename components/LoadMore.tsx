@@ -23,11 +23,11 @@ const LoadMore = ({
     const currentParams = new URLSearchParams(window.location.search);
 
     if (type === "prev" && hasPreviousPage) {
-      currentParams.delete("endCursor");
-      currentParams.set("startCursor", startCursor);
+      currentParams.delete("endcursor");
+      currentParams.set("startcursor", startCursor);
     } else if (type === "next" && hasNextPage) {
-      currentParams.delete("startCursor");
-      currentParams.set("endCursor", endCursor);
+      currentParams.delete("startcursor");
+      currentParams.set("endcursor", endCursor);
     }
 
     const newSearchParams = currentParams.toString();

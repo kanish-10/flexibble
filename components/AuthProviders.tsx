@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { getProviders, signIn } from "next-auth/react";
-import { Button } from ".";
+import React, { useEffect, useState } from "react";
+
+import Button from "./Button";
 
 type Provider = {
   id: string;
@@ -10,7 +11,7 @@ type Provider = {
   type: string;
   signinUrl: string;
   callbackUrl: string;
-  signinUrlParams?: Record<string, string> | null;
+  signinUrlParams?: Record<string, string> | undefined;
 };
 
 type Providers = Record<string, Provider>;
@@ -21,27 +22,26 @@ const AuthProviders = () => {
   useEffect(() => {
     const fetchProviders = async () => {
       const res = await getProviders();
-      console.log(res);
+
       setProviders(res);
     };
+
     fetchProviders();
   }, []);
 
   if (providers) {
     return (
-      <div className="">
+      <div>
         {Object.values(providers).map((provider: Provider, i) => (
           <Button
             key={i}
-            handleClick={() => signIn(provider?.id)}
             title="Sign In"
+            handleClick={() => signIn(provider?.id)}
           />
         ))}
       </div>
     );
   }
-
-  return <div>AuthProviders</div>;
 };
 
 export default AuthProviders;
