@@ -102,7 +102,7 @@ export const fetchAllProjects = async (
     return makeGraphQLRequest(projectsQuery, { category, endCursor });
   }
   return makeGraphQLRequest(projectsQuery, {
-    category: null,
+    category: "",
     endCursor: undefined,
   });
 };
