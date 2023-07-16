@@ -101,7 +101,7 @@ export const fetchAllProjects = async (
   if (category) {
     return makeGraphQLRequest(projectsQuery, { category, endCursor });
   }
-  return makeGraphQLRequest(projectsQuery, { category: "all", endCursor });
+  return makeGraphQLRequest(projectsQuery, { category: undefined, endCursor });
 };
 
 export const getProjectDetails = (id: string) => {
