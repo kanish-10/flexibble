@@ -93,18 +93,12 @@ export const createNewProject = async (
   }
 };
 
-export const fetchAllProjects = async (
-  category?: string | null | undefined,
-  endCursor?: string | null | undefined
+export const fetchAllProjects = (
+  category?: string | null,
+  endCursor?: string | null
 ) => {
   client.setHeader("x-api-key", apiKey);
-  if (category) {
-    return makeGraphQLRequest(projectsQuery, { category, endCursor });
-  }
-  return makeGraphQLRequest(projectsQuery, {
-    category: "",
-    endCursor: undefined,
-  });
+  return makeGraphQLRequest(projectsQuery, { category, endCursor });
 };
 
 export const getProjectDetails = (id: string) => {

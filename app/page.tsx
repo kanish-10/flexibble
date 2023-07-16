@@ -18,7 +18,7 @@ type ProjectSearch = {
 
 type SearchParams = {
   category?: string | null;
-  endCursor?: string;
+  endCursor?: string | null;
 };
 
 type Props = {
@@ -40,7 +40,6 @@ const Home = async ({ searchParams: { category, endCursor } }: Props) => {
       </section>
     );
   }
-  const pagination = data?.projectSearch?.pageInfo;
 
   return (
     <section className="flex-start flex-col paddings mb-16">
@@ -59,10 +58,10 @@ const Home = async ({ searchParams: { category, endCursor } }: Props) => {
         ))}
       </section>
       <LoadMore
-        startCursor={pagination.startCursor}
-        endCursor={pagination.endCursor}
-        hasPreviousPage={pagination.hasPreviousPage}
-        hasNextPage={pagination.hasNextPage}
+        startCursor={data?.projectSearch?.pageInfo?.startCursor}
+        endCursor={data?.projectSearch?.pageInfo?.endCursor}
+        hasPreviousPage={data?.projectSearch?.pageInfo?.hasPreviousPage}
+        hasNextPage={data?.projectSearch?.pageInfo?.hasNextPage}
       />
     </section>
   );
