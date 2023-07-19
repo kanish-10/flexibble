@@ -55,7 +55,7 @@ export const createUserMutation = `
 `;
 
 export const projectsQuery = `
-  query getProjects($category: String, $endCursor: String, $categoryExists: Boolean) {
+  query getProjects($category: String, $endCursor: String, $categoryExists: Boolean!) {
   projectSearch(first: 8, after: $endCursor, filter: { category: { eq: $category } }) {
     pageInfo {
       hasNextPage
