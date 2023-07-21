@@ -62,14 +62,11 @@ export const fetchAllProjects = async (
   endcursor?: string | null
 ) => {
   client.setHeader("x-api-key", apiKey);
-  if (category) {
-    return makeGraphQLRequest(projectsQuery, {
-      category,
-      endcursor,
-    });
-  }
-  return makeGraphQLRequest(allProjectsQuery, {
-    category,
+  const validCategory = category ?? "";
+
+  return makeGraphQLRequest(projectsQuery, {
+    category: validCategory,
+    endcursor,
   });
 };
 
