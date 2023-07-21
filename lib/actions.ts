@@ -9,7 +9,6 @@ import {
   getProjectsOfUserQuery,
   getUserQuery,
   projectsQuery,
-  allProjectsQuery,
 } from "@/graphql";
 import { ProjectForm } from "@/common.types";
 
