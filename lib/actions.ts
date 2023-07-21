@@ -63,8 +63,8 @@ export const fetchAllProjects = (
   client.setHeader("x-api-key", apiKey);
 
   const variables = {
-    category: category ? category : null,
-    endcursor: endcursor ? endcursor : null,
+    category,
+    endcursor,
   };
 
   console.log(variables);
