@@ -9,6 +9,7 @@ const User = g
     description: g.string().length({ min: 2, max: 1000 }).optional(),
     githubUrl: g.url().optional(),
     linkedinUrl: g.url().optional(),
+    // @ts-ignore
     projects: g
       .relation(() => Project)
       .list()
@@ -26,7 +27,7 @@ const Project = g
     image: g.url(),
     liveSiteUrl: g.url(),
     githubUrl: g.url(),
-    category: g.string().optional().search(),
+    category: g.string().search(),
     createdBy: g.relation(() => User),
   })
   .auth((rules) => {
