@@ -30,7 +30,7 @@ export const fetchToken = async () => {
     const response = await fetch(`${serverUrl}/api/auth/token`);
     return response.json();
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 
@@ -61,10 +61,10 @@ export const fetchAllProjects = async (
   endcursor?: string | null
 ) => {
   client.setHeader("x-api-key", apiKey);
-  // const validCategory = category ?? "";
+  const validCategory = category ?? "";
 
   return makeGraphQLRequest(projectsQuery, {
-    category,
+    category: validCategory,
     endcursor,
   });
 };
