@@ -143,7 +143,7 @@ export const getProjectsOfUserQuery = `
 
 export const allProjectsQuery = `
   query getProjects($endcursor: String) {
-    projectSearch(first: 8, after: $endcursor, filter: { NOT: { category: { eq: "grafbase" } } }) {
+    projectSearch(first: 8, after: $endcursor, filter: { ALL: { category: [{ neq: "grafbase" }] } }) {
       pageInfo {
         hasNextPage
         hasPreviousPage
